@@ -1,0 +1,71 @@
+@import "mixins";
+@import "variables";
+@import url("https://fonts.googleapis.com/css?family=Lato:300&display=swap");
+
+/* general */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 10px 0 0 0;
+}
+
+h1 {
+  font: {
+    size: $fontSize;
+    weight: $fontWeight;
+    family: $myFont;
+  }
+  color: $fontColor;
+}
+
+/* strips */
+.strips {
+  @include strips-base(100vw);
+  cursor: pointer;
+  overflow: hidden;
+
+  .strip {
+    @include strips-base(19.9vw);
+    @include strip-flex(relative);
+    overflow: hidden;
+    margin: 0.1vw;
+
+    .strip_content {
+      @include strips-base(100%);
+      @include strip-flex(absolute);
+    }
+  }
+  
+  /* before */
+  .strip_content {
+    &:before {
+      @include strips-base(20vw);
+      @include strip-flex(absolute);
+      @include trans-opac(30deg, 1, 0, 0, 0.05);
+      content: "";
+      text-align: initial;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background: white;
+      transform-origin: center center;
+      transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    &:hover:before {
+    @include trans-opac(0deg, 2, 0, 0, 0.2);
+    }
+  }
+}
+
+/* strips 1-5: nth-child 1-5 */
+.strip {
+  @for $i from 1 to 6 {
+    &:nth-child(#{$i}) .strip_content {
+      @include animation(nth($colors, $i), nth($ani-last2letters, $i), nth($duration, $i));}
+    @include keyframes(nth($ani-last2letters, $i), nth($translateX, $i), nth($translateY, $i), nth($translateZ, $i));
+  }
+}
+
+// /*# sourceMappingURL=style.css.map */
