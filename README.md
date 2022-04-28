@@ -3,7 +3,8 @@
 ## Project name
 ```
 CSS animations:
-These are two different animations built only with CSS properties transition and transform.
+These are two different animations built with CSS preprocessor SCSS, 
+only using properties transition and transform.
 ```
 
 ## Contact Info
